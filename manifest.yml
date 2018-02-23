@@ -1,0 +1,17 @@
+---
+applications:
+- name: meshstack-docker-registry
+  host: meshstack-docker-registry
+  memory: 256M
+  docker:
+    image: meshcloud/cf-docker-registry
+  env:
+    OS_USERNAME: xx
+    OS_PASSWORD: xx
+    OS_AUTH_URL: xx
+    OS_PROJECT_ID: xx
+    OS_PROJECT_DOMAIN_ID: xx
+    OS_SWIFT_CONTAINER: xx
+    BASIC_AUTH_USER: test
+    BASIC_AUTH_PASSWORD: xxx
+    REGISTRY_HTTP_SECRET: xx
