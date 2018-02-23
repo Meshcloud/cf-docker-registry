@@ -12,8 +12,7 @@ echo "Writing config.yml"
 echo "
 version: 0.1
 log:
-  fields:
-    service: registry
+  level: debug
 storage:
   cache:
     blobdescriptor: inmemory
