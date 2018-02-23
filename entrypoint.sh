@@ -37,7 +37,7 @@ health:
     enabled: true
     interval: 10s
     threshold: 3
-" > config.yml
+" > /etc/docker/registry/config.yml
 
 # Start the app
-registry serve config.yml
+registry serve /etc/docker/registry/config.yml
