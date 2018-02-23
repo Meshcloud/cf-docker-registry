@@ -6,13 +6,14 @@ if [ -z "${PORT}" ]; then
   exit 1
 fi
 
-echo "Writing config.yml"
+echo "Generating .htpasswd"
+htpasswd -Bbn $BASIC_AUTH_USER $BASIC_AUTH_PASSWORD > /etc/docker/registry/htpasswd
 
-# Fill in template and write it to config.yml
+echo "Writing config.yml"
 echo "
 version: 0.1
 log:
-  level: debug
+  level: info
 storage:
   cache:
     blobdescriptor: inmemory
@@ -25,17 +26,17 @@ storage:
     container: ${OS_SWIFT_CONTAINER}
   redirect:
     disable: true
-
 http:
   addr: :${PORT}
   headers:
     X-Content-Type-Options: [nosniff]
-
+auth:
+  htpasswd:
+    realm: basic-realm
+    path: /etc/docker/registry/htpasswd
 health:
   storagedriver:
-    enabled: true
-    interval: 10s
-    threshold: 3
+    enabled: false
 " > /etc/docker/registry/config.yml
 
 # Start the app
